@@ -14,13 +14,21 @@ download(){
 }
 
 prebuild(){
+    apk update
+    apk add gmp gmp-dev
+
+    for patch in /tmp/run/patch/*.patch;
+    do
+        git apply $patch
+    done
+    rm -f config.status
     ./autogen.sh
 
-    CFLAGS="-static -O2 -march=native" \ 
-    CXXFLAGS="-static -O2 -march=native" \
-    LIBS="-lz -lssh2 -lgmp -lcurl" \
+    CFLAGS="-O3 -march=native -Wall -D_REENTRANT -static" \
+    CXXFLAGS="$CFLAGS -std=gnu++11" \
     LDFLAGS="-Wl,-static -static -static-libgcc -s" \
-    ./configure --with-crypto --with-curl 
+    LIBS="${LIBS} -lssh2 -lgmp -lz -lcrypto" \
+    ./configure --with-curl
 }
 
 build(){

@@ -1,0 +1,37 @@
+From 1764403c1c3bfde38056fd8739105c5cb0837cb3 Mon Sep 17 00:00:00 2001
+From: Your Name <you@example.com>
+Date: Mon, 25 Sep 2017 15:42:34 +0200
+Subject: [PATCH] add endian.h
+
+---
+ algo/hodl/sha512_avx.c  | 1 +
+ algo/hodl/sha512_avx2.c | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/algo/hodl/sha512_avx.c b/algo/hodl/sha512_avx.c
+index 5f3b969..f51fb37 100644
+--- a/algo/hodl/sha512_avx.c
++++ b/algo/hodl/sha512_avx.c
+@@ -4,6 +4,7 @@
+ //Dependencies
+ #include <string.h>
+ #include <stdlib.h>
++#include <endian.h>
+ 
+ #ifdef __FreeBSD__
+ #include <sys/endian.h>
+diff --git a/algo/hodl/sha512_avx2.c b/algo/hodl/sha512_avx2.c
+index 135dd7f..b7a671d 100644
+--- a/algo/hodl/sha512_avx2.c
++++ b/algo/hodl/sha512_avx2.c
+@@ -3,6 +3,7 @@
+ //Dependencies
+ #include <string.h>
+ #include <stdlib.h>
++#include <endian.h>
+ 
+ #ifdef __FreeBSD__
+ #include <sys/endian.h>
+-- 
+2.7.4
+
